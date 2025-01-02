@@ -56,9 +56,10 @@ FunctionInfo* findFunctionByName(std::vector<FunctionInfo>& functions, const std
 template<typename Ret, typename... Args>
 Ret invokeFunction(FunctionInfo* funcInfo, Args... args);
 
-int MessageBoxW(
-  HWND    hWnd,       // Дескриптор родительского окна
-  LPCWSTR lpText,     // Текст сообщения
-  LPCWSTR lpCaption,  // Заголовок окна сообщения
-  UINT    uType       // Тип окна сообщения (иконки, кнопки и т. д.)
-);
+// Пример структуры для параметров MessageBoxW
+struct MessageBoxParams {
+    HWND hWnd;
+    LPCWSTR lpText;
+    LPCWSTR lpCaption;
+    UINT uType;
+};
