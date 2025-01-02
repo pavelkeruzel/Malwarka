@@ -1,6 +1,6 @@
 #include "../headers/defenitions.hpp"
 #include "../headers/function_info.hpp"
-#include "../headers/syscall.hpp"
+#include "../headers/syscall.h"
 
 int main() {
     HANDLE hProcess = GetCurrentProcess();
