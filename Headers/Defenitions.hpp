@@ -52,10 +52,13 @@ Ret invokeFunction(const FunctionInfo& funcInfo, const MessageBoxParams& params)
     return func(params.hWnd, params.lpText, params.lpCaption, params.uType);
 }
 
-// MessageBoxW structure examples
-struct MessageBoxParams {
-    HWND hWnd;
-    LPCWSTR lpText;
-    LPCWSTR lpCaption;
-    UINT uType;
-};
+// Function defenition for syscall
+extern "C" NTSTATUS NtAllocateVirtualMemory(
+    HANDLE ProcessHandle,
+    PVOID* BaseAddress,
+    ULONG_PTR ZeroBits,
+    PSIZE_T RegionSize,
+    ULONG AllocationType,
+    ULONG Protect
+);
+
