@@ -1,5 +1,5 @@
 #pragma once
-#include "Dependencies.hpp"
+#include "dependencies.hpp"
 
 class FunctionInfo {
 public:

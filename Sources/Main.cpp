@@ -1,6 +1,6 @@
-#include "../headers/Dependencies.hpp"
-#include "../headers/Defenitions.hpp"
-#include "../headers/FunctionInfo.hpp"
+#include "../headers/dependencies.hpp"
+#include "../headers/defenitions.hpp"
+#include "../headers/function_info.hpp"
 
 int main() {
     // std::vector<FunctionInfo> functionInfo = {

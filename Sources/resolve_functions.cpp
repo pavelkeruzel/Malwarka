@@ -1,4 +1,4 @@
-#include "../headers/FunctionInfo.hpp"
+#include "../headers/function_info.hpp"
 
 /**
  * @brief Resolves functions from dynamic libraries and stores their addresses.

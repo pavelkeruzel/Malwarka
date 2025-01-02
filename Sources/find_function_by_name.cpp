@@ -1,5 +1,5 @@
 #include "../headers/Defenitions.hpp"
-#include "../headers/FunctionInfo.hpp"
+#include "../headers/function_info.hpp"
 
 /**
  * @brief Finds a FunctionInfo structure by its function name in a given vector.
