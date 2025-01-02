@@ -28,13 +28,4 @@ void resolveFunctions(std::vector<FunctionInfo>& functions);
  */
 FunctionInfo* findFunctionByName(std::vector<FunctionInfo>& functions, const std::string& function_name);
 
-// Function defenition for syscall
-extern "C" NTSTATUS NtAllocateVirtualMemory(
-    HANDLE ProcessHandle,
-    PVOID* BaseAddress,
-    ULONG_PTR ZeroBits,
-    PSIZE_T RegionSize,
-    ULONG AllocationType,
-    ULONG Protect
-);
 
