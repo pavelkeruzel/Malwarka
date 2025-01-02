@@ -28,30 +28,6 @@ void resolveFunctions(std::vector<FunctionInfo>& functions);
  */
 FunctionInfo* findFunctionByName(std::vector<FunctionInfo>& functions, const std::string& function_name);
 
-/**
- * @brief Invokes a function by its address with the provided arguments and returns the result.
- * 
- * This template function converts the function address stored in the FunctionInfo structure
- * into a callable function, calls it with the specified arguments, and returns the result.
- *
- * @tparam Ret The return type of the function.
- * @tparam Args The types of the arguments to pass to the function.
- * @param funcInfo A pointer to a FunctionInfo structure containing the function address.
- * @param args The arguments to pass to the function.
- * @return Ret The result of the function call.
- * @throw std::invalid_argument if the function address is invalid.
- */
-template<typename Ret>
-Ret invokeFunction(const FunctionInfo& funcInfo, const MessageBoxParams& params) {
-    if (!funcInfo.getFunctionAddress()) {
-        throw std::invalid_argument("Invalid function address.");
-    }
-
-    auto func = reinterpret_cast<Ret(*)(HWND, LPCWSTR, LPCWSTR, UINT)>(funcInfo.getFunctionAddress());
-
-    return func(params.hWnd, params.lpText, params.lpCaption, params.uType);
-}
-
 // Function defenition for syscall
 extern "C" NTSTATUS NtAllocateVirtualMemory(
     HANDLE ProcessHandle,
