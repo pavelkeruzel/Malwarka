@@ -36,8 +36,8 @@ int main() {
 
     // Use VirtualQuery to check memory properties before freeing
     MEMORY_BASIC_INFORMATION mbi;
-    SIZE_T result = VirtualQuery(baseAddress, &mbi, sizeof(mbi));
-    if (result == 0) {
+    SIZE_T queryResult = VirtualQuery(baseAddress, &mbi, sizeof(mbi));
+    if (queryResult == 0) {
         std::cerr << "VirtualQuery failed with error: " << GetLastError() << std::endl;
     } else {
         std::cout << "Region state: " << mbi.State << std::endl;
@@ -76,6 +76,20 @@ int main() {
         std::cerr << "Region size: " << regionSize << std::endl;
         std::cerr << "Free address: " << freeAddress << std::endl;
         std::cerr << "Free size: " << freeSize << std::endl;
+    }
+
+    // Show a message box using the indirect syscall
+    int messageBoxResult = MessageBoxW(
+        NULL,
+        L"hui sosi pidoras",
+        L"Indirect Syscall MessageBoxW",
+        MB_OK
+    );
+
+    if (messageBoxResult == IDOK) {
+        std::cout << "MessageBoxW displayed successfully." << std::endl;
+    } else {
+        std::cout << "MessageBoxW failed." << std::endl;
     }
 
     return 0;

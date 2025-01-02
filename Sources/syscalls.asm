@@ -11,3 +11,5 @@ SYSCALL_STUB NtProtectVirtualMemory, 0x1A
 
 ; Generate a syscall stub for NtQueryVirtualMemory with syscall number 0x1B
 SYSCALL_STUB NtQueryVirtualMemory, 0x1B
+
+; Removing the syscall stub for MessageBoxW to avoid duplication
