@@ -7,3 +7,6 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <tuple>
+#include <functional>
+#include <stdexcept>
