@@ -16,12 +16,27 @@ int main() {
     );
 
     if (status == 0) {
-        printf("Memory allocated successfully at %p\n", baseAddress);
+        std::cout << "Memory allocated successfully at " << baseAddress << std::endl;
     } else {
-        printf("Memory allocation failed with status code: 0x%lX\n", status);
+        std::cout << "Memory allocation failed with status code: 0x" << std::hex << status << std::endl;
+    }
+
+    // Free the allocated memory
+    status = NtFreeVirtualMemory(
+        hProcess,
+        &baseAddress,
+        &regionSize,
+        MEM_RELEASE
+    );
+
+    if (status == 0) {
+        std::cout << "Memory freed successfully." << std::endl;
+    } else {
+        std::cout << "Memory free failed with status code: 0x" << std::hex << status << std::endl;
     }
 
     return 0;
 }
+
 
 
