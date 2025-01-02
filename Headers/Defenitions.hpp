@@ -41,18 +41,15 @@ FunctionInfo* findFunctionByName(std::vector<FunctionInfo>& functions, const std
  * @return Ret The result of the function call.
  * @throw std::invalid_argument if the function address is invalid.
  */
-template<typename Ret, typename... Args>
-Ret invokeFunction(const FunctionInfo& funcInfo, const Args&... args) {
-    // Check if the function address is valid
+template<typename Ret>
+Ret invokeFunction(const FunctionInfo& funcInfo, const MessageBoxParams& params) {
     if (!funcInfo.getFunctionAddress()) {
         throw std::invalid_argument("Invalid function address.");
     }
-    
-    // Convert the function address to a callable function pointer
-    std::function<Ret(Args...)> func = reinterpret_cast<Ret(*)(Args...)>(funcInfo.getFunctionAddress());
-    
-    // Call the function with the provided arguments and return the result
-    return func(args...);
+
+    auto func = reinterpret_cast<Ret(*)(HWND, LPCWSTR, LPCWSTR, UINT)>(funcInfo.getFunctionAddress());
+
+    return func(params.hWnd, params.lpText, params.lpCaption, params.uType);
 }
 
 // MessageBoxW structure examples
