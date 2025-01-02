@@ -12,4 +12,9 @@ endif()
 file(GLOB SOURCES "sources/*.cpp")
 file(GLOB HEADERS "sources/*.hpp")
 
-add_executable(Malware ${SOURCES} ${HEADERS})
+set(ASM_SOURCES sources/syscall.asm)
+
+enable_language(ASM_NASM)
+set(CMAKE_ASM_NASM_OBJECT_FORMAT win64)
+
+add_executable(Malware ${SOURCES} ${HEADERS} ${ASM_SOURCES})
