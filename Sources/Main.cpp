@@ -10,6 +10,6 @@ int main() {
  
     FunctionInfo* msgBoxInfo = findFunctionByName(functionInfo, "MessageBoxW");
     MessageBoxParams params = { NULL, L"Lol hui", L"Sosi pidor", MB_OK | MB_ICONINFORMATION };
-   
+    invokeFunction<int, MessageBoxParams>(*msgBoxInfo, params);
     return 0;
 }

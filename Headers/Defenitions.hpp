@@ -55,7 +55,7 @@ Ret invokeFunction(const FunctionInfo& funcInfo, const Args&... args) {
     return func(args...);
 }
 
-// Пример структуры для параметров MessageBoxW
+// MessageBoxW structure examples
 struct MessageBoxParams {
     HWND hWnd;
     LPCWSTR lpText;
