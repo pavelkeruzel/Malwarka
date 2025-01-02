@@ -1,15 +1,6 @@
-section .text align=16
+%include "syscall_macros.asm"
 
-global NtAllocateVirtualMemory 
-
-extern NtAllocateVirtualMemory  
-
-NtAllocateVirtualMemory:
-    mov r10, rcx                
-    mov eax, 0x18              
-    lea rcx, [rel syscall]    
-    jmp rcx                   
-    ret
-syscall:
-    syscall        
-    ret
+SYSCALL_STUB NtAllocateVirtualMemory, 0x18
+SYSCALL_STUB NtFreeVirtualMemory, 0x19
+SYSCALL_STUB NtProtectVirtualMemory, 0x1A
+SYSCALL_STUB NtQueryVirtualMemory, 0x1B
