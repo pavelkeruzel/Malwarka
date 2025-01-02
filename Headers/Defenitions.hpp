@@ -16,18 +16,6 @@ class FunctionInfo;
 void resolveFunctions(std::vector<FunctionInfo>& functions);
 
 /**
- * @brief Calls a function by its name with the provided arguments.
- * 
- * This template function finds the function by its name and calls it with the specified arguments.
- *
- * @tparam Args The types of the arguments to pass to the function.
- * @param functionName The name of the function to call.
- * @param args The arguments to pass to the function.
- */
-template <typename... Args> 
-void callFunctionByName(const std::string& functionName, Args&&... args);
-
-/**
  * @brief Finds a FunctionInfo structure by its function name in a given vector.
  * 
  * This function iterates through a vector of FunctionInfo structures and searches
@@ -43,8 +31,8 @@ FunctionInfo* findFunctionByName(std::vector<FunctionInfo>& functions, const std
 /**
  * @brief Invokes a function by its address with the provided arguments and returns the result.
  * 
- * This template function converts the function address to a callable function, 
- * calls it with the specified arguments, and returns the result.
+ * This template function converts the function address stored in the FunctionInfo structure
+ * into a callable function, calls it with the specified arguments, and returns the result.
  *
  * @tparam Ret The return type of the function.
  * @tparam Args The types of the arguments to pass to the function.
@@ -54,7 +42,18 @@ FunctionInfo* findFunctionByName(std::vector<FunctionInfo>& functions, const std
  * @throw std::invalid_argument if the function address is invalid.
  */
 template<typename Ret, typename... Args>
-Ret invokeFunction(FunctionInfo* funcInfo, Args... args);
+Ret invokeFunction(const FunctionInfo& funcInfo, const Args&... args) {
+    // Check if the function address is valid
+    if (!funcInfo.getFunctionAddress()) {
+        throw std::invalid_argument("Invalid function address.");
+    }
+    
+    // Convert the function address to a callable function pointer
+    std::function<Ret(Args...)> func = reinterpret_cast<Ret(*)(Args...)>(funcInfo.getFunctionAddress());
+    
+    // Call the function with the provided arguments and return the result
+    return func(args...);
+}
 
 // Пример структуры для параметров MessageBoxW
 struct MessageBoxParams {
