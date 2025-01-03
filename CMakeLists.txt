@@ -14,8 +14,8 @@ set(CMAKE_CXX_COMPILER clang++)
 # Add the executable
 add_executable(SyscallProject
     main.cpp
-    ConcreteSyscall.cpp
-    SyscallHelper.cpp
+    concrete_syscall.cpp
+    syscall_helper.cpp
     syscall.asm
 )
 
